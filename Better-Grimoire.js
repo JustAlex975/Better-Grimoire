@@ -8,6 +8,8 @@ BetterGrimoire.GameVersion = '2.048';
 
 BetterGrimoire.launch = function(){
 	BetterGrimoire.init = function(){
+		if (Game.prefs.popups) Game.Popup(BetterGrimoire.name + ' loaded!');
+		else Game.Notify(BetterGrimoire.name + ' loaded!', '', '', 1, 1);
 		CCSE.AppendStatsGeneral('Booyah!')
 		
 		CCSE.MinigameReplacer(function(){
