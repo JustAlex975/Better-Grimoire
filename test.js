@@ -7,17 +7,24 @@ HurricaneSugar.GameVersion = '2.048';
 
 HurricaneSugar.launch = function(){
 	HurricaneSugar.init = function(){
-		CCSE.AppendStatsGeneral('Booyah!')
+		CCSE.NewBuff('hurricane sugar',function(time, pow){
+			return {
+				name: 'Hurri-Cane Sugar',
+				desc: 'Sugar lumps ripen in ' + Game.sayTime(pow * 2 / 1000 * Game.fps, -1) + ' for ' + Game.sayTime(time * Game.fps, -1) + '!',
+				icon: [29,14],
+				time: time * Game.fps,
+				add: true,
+				power: pow
+			};
+		});
 		
-		CCSE.MinigameReplacer(function(){
-			var objKey = 'Wizard tower';
-			var M = Game.Objects[objKey].minigame;
-			
-			//???
-			CCSE.InjectCodeIntoFunction(M.getSpellCost, 'M.magicM', 'M.magic', 0);
-			CCSE.InjectCodeIntoFunction(M.getSpellCostBreakdown, 'max', 'current', 0);
-			
-		}, 'Wizard tower');
+		Game.customComputeLumpTimes.push(HurricaneSugar.buffedLumpTime);
+		HurricaneSugar.InjectIntoGoldenCookie();
+		HurricaneSugar.InjectIntoHandofFate(); // Don't need CCSE.MinigameReplacer if we just push to CCSE arrays
+		
+		Game.customStatsMenu.push(function(){
+			CCSE.AppendStatsVersionNumber(HurricaneSugar.name, HurricaneSugar.version);
+		});
 		
 		HurricaneSugar.isLoaded = 1;
 		if (Game.prefs.popups) Game.Popup(HurricaneSugar.name + ' loaded!');
