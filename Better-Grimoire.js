@@ -7,19 +7,25 @@ BetterGrimoire.version = '0.0';
 BetterGrimoire.GameVersion = '2.048';
 
 BetterGrimoire.launch = function(){
-	CCSE.AppendStatsGeneral('Booyah!')
-	CCSE.MinigameReplacer(function(){
-		var objKey = 'Wizard tower';
-		var M = Game.Objects[objKey].minigame;
+	BetterGrimoire.init = function(){
+		CCSE.AppendStatsGeneral('Booyah!')
 		
-		//???
-		CCSE.InjectCodeIntoFunction(M.getSpellCost, 'M.magicM', 'M.magic', 0);
-		CCSE.InjectCodeIntoFunction(M.getSpellCostBreakdown, 'max', 'current', 0);
+		CCSE.MinigameReplacer(function(){
+			var objKey = 'Wizard tower';
+			var M = Game.Objects[objKey].minigame;
+			
+			//???
+			CCSE.InjectCodeIntoFunction(M.getSpellCost, 'M.magicM', 'M.magic', 0);
+			CCSE.InjectCodeIntoFunction(M.getSpellCostBreakdown, 'max', 'current', 0);
+			
+		}, 'Wizard tower');
 		
-	}, 'Wizard tower');
-	BetterGrimoire.isLoaded = 1;
-	if (Game.prefs.popups) Game.Popup(BetterGrimoire.name + ' loaded!');
-	else Game.Notify(BetterGrimoire.name + ' loaded!', '', '', 1, 1);
+		BetterGrimoire.isLoaded = 1;
+		if (Game.prefs.popups) Game.Popup(BetterGrimoire.name + ' loaded!');
+		else Game.Notify(BetterGrimoire.name + ' loaded!', '', '', 1, 1);
+	}
+	
+	if(CCSE.ConfirmGameVersion(BetterGrimoire.name, BetterGrimoire.version, BetterGrimoire.GameVersion)) BetterGrimoire.init();
 }
 
 if(!BetterGrimoire.isLoaded){
