@@ -1,6 +1,6 @@
 Game.Win('Third-party');
 if(BetterGrimoire === undefined) var BetterGrimoire = {};
-if(typeof CCSE == 'undefined') Game.LoadMod('https://klattmose.github.io/CookieClicker/' + (0 ? 'Beta/' : '') + 'CCSE.js');
+if(typeof CCSE == 'undefined') Game.LoadMod('https://klattmose.github.io/CookieClicker/CCSE.js');
 BetterGrimoire.name = 'Better Grimoire';
 BetterGrimoire.pic = 'https://klattmose.github.io/CookieClicker/img/timer.png';
 BetterGrimoire.version = '0.0';
