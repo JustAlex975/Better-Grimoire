@@ -8,6 +8,7 @@ BetterGrimoire.GameVersion = '2.048';
 
 BetterGrimoire.launch = function(){
 	BetterGrimoire.isLoaded = 1;
+	CCSE.AppendStatsGeneral('Booyah!')
 	CCSE.MinigameReplacer(function(){
 		var objKey = 'Wizard tower';
 		var M = Game.Objects[objKey].minigame;
