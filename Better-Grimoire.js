@@ -12,7 +12,9 @@ BetterGrimoire.launch = function(){
 		var objKey = 'Wizard tower';
 		var M = Game.Objects[objKey].minigame;
 		
-		//I'll work this out later
+		//???
+		CCSE.InjectCodeIntoFunction(M.getSpellCost, 'M.magicM', 'M.magic', 0);
+		CCSE.InjectCodeIntoFunction(M.getSpellCostBreakdown, 'max', 'current', 0);
 		
 	}, 'Wizard tower');
 }
