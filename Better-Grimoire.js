@@ -7,7 +7,6 @@ BetterGrimoire.version = '0.0';
 BetterGrimoire.GameVersion = '2.048';
 
 BetterGrimoire.launch = function(){
-	BetterGrimoire.isLoaded = 1;
 	CCSE.AppendStatsGeneral('Booyah!')
 	CCSE.MinigameReplacer(function(){
 		var objKey = 'Wizard tower';
@@ -18,6 +17,9 @@ BetterGrimoire.launch = function(){
 		CCSE.InjectCodeIntoFunction(M.getSpellCostBreakdown, 'max', 'current', 0);
 		
 	}, 'Wizard tower');
+	BetterGrimoire.isLoaded = 1;
+	if (Game.prefs.popups) Game.Popup(BetterGrimoire.name + ' loaded!');
+	else Game.Notify(BetterGrimoire.name + ' loaded!', '', '', 1, 1);
 }
 
 if(!BetterGrimoire.isLoaded){
